@@ -1,0 +1,15 @@
+---
+
+- name: RKE | Download binary from Github
+  get_url:
+    url: "{{ rke_binary_url }}"
+    dest: "{{ rke_install_dir }}/rke_{{ rke_version }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- name: RKE | Create a symlink to the binary
+  file:
+    src: "{{ rke_install_dir }}"
+    dest: "{{ rke_install_dir }}/rke"
+    state: link
